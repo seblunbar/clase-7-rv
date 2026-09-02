@@ -94,7 +94,7 @@
       // Mueve esta entidad a un punto aleatorio alrededor del jugador:
       // ángulo aleatorio (0-360°) + distancia y altura aleatorias.
       reubicar: function () {
-        const angulo = Math.random() * Math.PI * 2;
+        const angulo = Math.random() * (Math.PI * 2) / 4;
         const distancia = 2 + Math.random() * 1.5; // entre 2 y 3.5 metros
         const altura = 1 + Math.random() * 1;       // entre 1 y 2 metros de alto
         const x = distancia * Math.cos(angulo);
@@ -141,21 +141,21 @@
 
       sumarPunto: function () {
         if (!this.jugando) return;
-        this.puntos++ * 2;
+        this.puntos += 2;
         this.hudPuntos.setAttribute('value', `Puntos: ${this.puntos}`);
       },
 
       terminarJuego: function () {
         this.jugando = false;
         clearInterval(this.temporizador); // dejamos de descontar segundos
-        this.hudFinal.setAttribute('value', `¡Tiempo! Puntuación final: ${this.puntos}`);
+        this.hudFinal.setAttribute('value', `¡Tiempo! Puntuacion final: ${this.puntos}`);
         this.hudFinal.setAttribute('visible', true);
         this.botonReiniciar.setAttribute('visible', true);
       },
 
       reiniciar: function () {
         this.puntos = 0;
-        this.segundosRestantes = 30;
+        this.segundosRestantes = 60;
         this.jugando = true;
         this.hudPuntos.setAttribute('value', 'Puntos: 0');
         this.hudTiempo.setAttribute('value', 'Tiempo: 60');
@@ -196,7 +196,7 @@
     <a-sky color="#00010D"></a-sky>
 
     <!-- Luz general: suficiente para ver bien la esfera objetivo, sin sombras duras -->
-    <a-entity light="type: ambient; color: #55557A; intensity: 0.9"></a-entity>
+    <a-entity light="type: ambient; color: #55557A; intensity: 1.5"></a-entity>
     <a-entity light="type: point; color: #FFFFFF; intensity: 0.8; distance: 20"
                position="0 2.5 0"></a-entity>
 
